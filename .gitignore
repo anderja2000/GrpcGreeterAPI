@@ -1,0 +1,32 @@
+# Solution-level ignores
+.vs/
+.vscode/
+.idea/
+*.sln.im
+*.userprefs
+
+# Build artifacts
+**/bin/
+**/obj/
+**/packages/
+
+# Local development files
+**/appsettings.Development.json
+**/launchSettings.json
+
+# Runtime files
+*.runtimeconfig.json
+*.dll
+*.exe
+*.pdb
+*.cache
+*.log
+
+# Protobuf codegen outputs (already covered by obj exclusion)
+# **/Protos/*.cs  # Not needed since they're in obj/
+
+# Misc
+.DS_Store
+*.suo
+*.user
+*.lock.json
