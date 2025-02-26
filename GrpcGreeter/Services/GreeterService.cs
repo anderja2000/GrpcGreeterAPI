@@ -33,4 +33,19 @@ public class GreeterService : Greeter.GreeterBase
 
     }
 
+    public override async Task<LongHelloReply> LongHello(IAsyncStreamReader<LongHelloRequest> requestStream, ServerCallContext context)
+    {
+        string result = ""; 
+
+        while ( await requestStream.MoveNext()) {
+            result += string.Format("Hello {0} {1} {2}",
+            requestStream.Current.Name.FirstName, 
+            requestStream.Current.Name.LastName, 
+            Environment.NewLine);
+        }
+
+
+        return new LongHelloReply() {Message = result}; 
+    }
+
 }

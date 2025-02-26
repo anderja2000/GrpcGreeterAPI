@@ -31,6 +31,16 @@ message HelloManyTimesReply {
   string message = 1;
 }
 
+// The request message containing the user's name.
+message LongHelloRequest {
+  Greeting name = 1;
+}
+
+// The response message containing the greetings.
+message LongHelloReply {
+  string message = 1;
+}
+
 // The greeting service definition.
 service Greeter {
   // Sends a greeting
@@ -38,5 +48,8 @@ service Greeter {
 
   // server streaming 
   rpc SayHelloManyTimes (HelloManyTimesRequest) returns (stream HelloManyTimesReply); 
+
+  // client stream 
+  rpc LongHello (stream LongHelloRequest) returns (LongHelloReply); 
 }
 
