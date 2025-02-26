@@ -48,4 +48,17 @@ public class GreeterService : Greeter.GreeterBase
         return new LongHelloReply() {Message = result}; 
     }
 
+    public override async Task GreetEveryone(IAsyncStreamReader<GreetEveryoneRequest> requestStream, IServerStreamWriter<GreetEveryoneResponse> responseStream, ServerCallContext context)
+    {
+        while (await requestStream.MoveNext()) { 
+            var result = String.Format("Hello {0} {1}",
+            requestStream.Current.Name.FirstName,
+            requestStream.Current.Name.LastName); 
+
+            Console.WriteLine("Received: " + result);
+            await responseStream.WriteAsync(new GreetEveryoneResponse() { Message = result}); 
+        }
+    }
+    
+
 }

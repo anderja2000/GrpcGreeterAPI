@@ -41,9 +41,19 @@ message LongHelloReply {
   string message = 1;
 }
 
+
+message GreetEveryoneRequest {
+  Greeting name = 1;
+}
+
+// The response message containing the greetings.
+message GreetEveryoneResponse {
+  string message = 1;
+}
+
 // The greeting service definition.
 service Greeter {
-  // Sends a greeting
+  // Sends a greeting (unary)
   rpc SayHello (HelloRequest) returns (HelloReply);
 
   // server streaming 
@@ -51,5 +61,8 @@ service Greeter {
 
   // client stream 
   rpc LongHello (stream LongHelloRequest) returns (LongHelloReply); 
+
+  //Bidi streaming 
+  rpc GreetEveryone (stream GreetEveryoneRequest) returns (stream GreetEveryoneResponse);
 }
 
